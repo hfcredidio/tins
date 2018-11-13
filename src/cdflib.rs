@@ -243,55 +243,55 @@ macro_rules! _cdflib {
     };
 }
 
-_cdflib!(@wrap beta_cdf_p(x, a, b) -> p wraps cdfbet(p, x, a, b));
-_cdflib!(@wrap beta_cdf_x(p, a, b) -> x wraps cdfbet(p, x, a, b));
-_cdflib!(@wrap beta_cdf_a(p, x, b) -> a wraps cdfbet(p, x, a, b));
-_cdflib!(@wrap beta_cdf_b(p, x, a) -> b wraps cdfbet(p, x, a, b));
+_cdflib!(@wrap beta_cdf(x, a, b) -> p wraps cdfbet(p, x, a, b));
+_cdflib!(@wrap beta_icdf_x(p, a, b) -> x wraps cdfbet(p, x, a, b));
+_cdflib!(@wrap beta_icdf_a(p, x, b) -> a wraps cdfbet(p, x, a, b));
+_cdflib!(@wrap beta_icdf_b(p, x, a) -> b wraps cdfbet(p, x, a, b));
 
-_cdflib!(@wrap binomial_cdf_p(s, xn, pr) -> p wraps cdfbet(p, pr, s, xn));
-_cdflib!(@wrap binomial_cdf_s(p, xn, pr) -> s wraps cdfbet(p, pr, s, xn));
-_cdflib!(@wrap binomial_cdf_xn(p, s, pr) -> xn wraps cdfbet(p, pr, s, xn));
-_cdflib!(@wrap binomial_cdf_pr(p, s, xn) -> pr wraps cdfbet(p, pr, s, xn));
+_cdflib!(@wrap binomial_cdf(s, xn, pr) -> p wraps cdfbet(p, pr, s, xn));
+_cdflib!(@wrap binomial_icdf_s(p, xn, pr) -> s wraps cdfbet(p, pr, s, xn));
+_cdflib!(@wrap binomial_icdf_xn(p, s, pr) -> xn wraps cdfbet(p, pr, s, xn));
+_cdflib!(@wrap binomial_icdf_pr(p, s, xn) -> pr wraps cdfbet(p, pr, s, xn));
 
-_cdflib!(@wrap chi2_cdf_p(x, df) -> p wraps cdfchi(p, x, df));
-_cdflib!(@wrap chi2_cdf_x(p, df) -> x wraps cdfchi(p, x, df));
-_cdflib!(@wrap chi2_cdf_df(p, x) -> df wraps cdfchi(p, x, df));
+_cdflib!(@wrap chi2_cdf(x, df) -> p wraps cdfchi(p, x, df));
+_cdflib!(@wrap chi2_icdf_x(p, df) -> x wraps cdfchi(p, x, df));
+_cdflib!(@wrap chi2_icdf_df(p, x) -> df wraps cdfchi(p, x, df));
 
-_cdflib!(@wrap chi2nc_cdf_p(x, df, pnonc) -> p wraps cdfchn(p, x, df, pnonc));
-_cdflib!(@wrap chi2nc_cdf_x(p, df, pnonc) -> x wraps cdfchn(p, x, df, pnonc));
-_cdflib!(@wrap chi2nc_cdf_df(p, x, pnonc) -> df wraps cdfchn(p, x, df, pnonc));
-_cdflib!(@wrap chi2nc_cdf_pnonc(p, x, df) -> pnonc wraps cdfchn(p, x, df, pnonc));
+_cdflib!(@wrap chi2nc_cdf(x, df, pnonc) -> p wraps cdfchn(p, x, df, pnonc));
+_cdflib!(@wrap chi2nc_icdf_x(p, df, pnonc) -> x wraps cdfchn(p, x, df, pnonc));
+_cdflib!(@wrap chi2nc_icdf_df(p, x, pnonc) -> df wraps cdfchn(p, x, df, pnonc));
+_cdflib!(@wrap chi2nc_icdf_pnonc(p, x, df) -> pnonc wraps cdfchn(p, x, df, pnonc));
 
-_cdflib!(@wrap f_cdf_p(f, dfn, dfd) -> p wraps cdff(p, f, dfn, dfd));
-_cdflib!(@wrap f_cdf_f(p, dfn, dfd) -> f wraps cdff(p, f, dfn, dfd));
-_cdflib!(@wrap f_cdf_dfn(p, f, dfd) -> dfn wraps cdff(p, f, dfn, dfd));
-_cdflib!(@wrap f_cdf_dfd(p, f, dfn) -> dfd wraps cdff(p, f, dfn, dfd));
+_cdflib!(@wrap f_cdf(f, dfn, dfd) -> p wraps cdff(p, f, dfn, dfd));
+_cdflib!(@wrap f_icdf_f(p, dfn, dfd) -> f wraps cdff(p, f, dfn, dfd));
+_cdflib!(@wrap f_icdf_dfn(p, f, dfd) -> dfn wraps cdff(p, f, dfn, dfd));
+_cdflib!(@wrap f_icdf_dfd(p, f, dfn) -> dfd wraps cdff(p, f, dfn, dfd));
 
-_cdflib!(@wrap fnc_cdf_p(f, dfn, dfd, pnonc) -> p wraps cdffnc(p, f, dfn, dfd, pnonc));
-_cdflib!(@wrap fnc_cdf_f(p, dfn, dfd, pnonc) -> f wraps cdffnc(p, f, dfn, dfd, pnonc));
-_cdflib!(@wrap fnc_cdf_dfn(p, f, dfd, pnonc) -> dfn wraps cdffnc(p, f, dfn, dfd, pnonc));
-_cdflib!(@wrap fnc_cdf_dfd(p, f, dfn, pnonc) -> dfd wraps cdffnc(p, f, dfn, dfd, pnonc));
-_cdflib!(@wrap fnc_cdf_pnonc(p, f, dfn, dfd) -> pnonc wraps cdffnc(p, f, dfn, dfd, pnonc));
+_cdflib!(@wrap fnc_cdf(f, dfn, dfd, pnonc) -> p wraps cdffnc(p, f, dfn, dfd, pnonc));
+_cdflib!(@wrap fnc_icdf_f(p, dfn, dfd, pnonc) -> f wraps cdffnc(p, f, dfn, dfd, pnonc));
+_cdflib!(@wrap fnc_icdf_dfn(p, f, dfd, pnonc) -> dfn wraps cdffnc(p, f, dfn, dfd, pnonc));
+_cdflib!(@wrap fnc_icdf_dfd(p, f, dfn, pnonc) -> dfd wraps cdffnc(p, f, dfn, dfd, pnonc));
+_cdflib!(@wrap fnc_icdf_pnonc(p, f, dfn, dfd) -> pnonc wraps cdffnc(p, f, dfn, dfd, pnonc));
 
-_cdflib!(@wrap gamma_cdf_p(x, shape, scale) -> p wraps cdfgam(p, x, shape, scale));
-_cdflib!(@wrap gamma_cdf_x(p, shape, scale) -> x wraps cdfgam(p, x, shape, scale));
-_cdflib!(@wrap gamma_cdf_shape(p, x, scale) -> shape wraps cdfgam(p, x, shape, scale));
-_cdflib!(@wrap gamma_cdf_scale(p, x, shape) -> scale wraps cdfgam(p, x, shape, scale));
+_cdflib!(@wrap gamma_cdf(x, shape, scale) -> p wraps cdfgam(p, x, shape, scale));
+_cdflib!(@wrap gamma_icdf_x(p, shape, scale) -> x wraps cdfgam(p, x, shape, scale));
+_cdflib!(@wrap gamma_icdf_shape(p, x, scale) -> shape wraps cdfgam(p, x, shape, scale));
+_cdflib!(@wrap gamma_icdf_scale(p, x, shape) -> scale wraps cdfgam(p, x, shape, scale));
 
-_cdflib!(@wrap negbinomial_cdf_p(s, xn, pr) -> p wraps cdfnbn(p, pr, s, xn));
-_cdflib!(@wrap negbinomial_cdf_s(p, xn, pr) -> s wraps cdfnbn(p, pr, s, xn));
-_cdflib!(@wrap negbinomial_cdf_xn(p, s, pr) -> xn wraps cdfnbn(p, pr, s, xn));
-_cdflib!(@wrap negbinomial_cdf_pr(p, s, xn) -> pr wraps cdfnbn(p, pr, s, xn));
+_cdflib!(@wrap negbinomial_cdf(s, xn, pr) -> p wraps cdfnbn(p, pr, s, xn));
+_cdflib!(@wrap negbinomial_icdf_s(p, xn, pr) -> s wraps cdfnbn(p, pr, s, xn));
+_cdflib!(@wrap negbinomial_icdf_xn(p, s, pr) -> xn wraps cdfnbn(p, pr, s, xn));
+_cdflib!(@wrap negbinomial_icdf_pr(p, s, xn) -> pr wraps cdfnbn(p, pr, s, xn));
 
-_cdflib!(@wrap normal_cdf_p(x, mean, sd) -> p wraps cdfnor(p, x, mean, sd));
-_cdflib!(@wrap normal_cdf_x(p, mean, sd) -> x wraps cdfnor(p, x, mean, sd));
-_cdflib!(@wrap normal_cdf_mean(p, x, sd) -> mean wraps cdfnor(p, x, mean, sd));
-_cdflib!(@wrap normal_cdf_sd(p, x, mean) -> sd wraps cdfnor(p, x, mean, sd));
+_cdflib!(@wrap normal_cdf(x, mean, sd) -> p wraps cdfnor(p, x, mean, sd));
+_cdflib!(@wrap normal_icdf_x(p, mean, sd) -> x wraps cdfnor(p, x, mean, sd));
+_cdflib!(@wrap normal_icdf_mean(p, x, sd) -> mean wraps cdfnor(p, x, mean, sd));
+_cdflib!(@wrap normal_icdf_sd(p, x, mean) -> sd wraps cdfnor(p, x, mean, sd));
 
-_cdflib!(@wrap poisson_cdf_p(s, xlam) -> p wraps cdfpoi(p, s, xlam));
-_cdflib!(@wrap poisson_cdf_s(p, xlam) -> s wraps cdfpoi(p, s, xlam));
-_cdflib!(@wrap poisson_cdf_xlam(p, s) -> xlam wraps cdfpoi(p, s, xlam));
+_cdflib!(@wrap poisson_cdf(s, xlam) -> p wraps cdfpoi(p, s, xlam));
+_cdflib!(@wrap poisson_icdf_s(p, xlam) -> s wraps cdfpoi(p, s, xlam));
+_cdflib!(@wrap poisson_icdf_xlam(p, s) -> xlam wraps cdfpoi(p, s, xlam));
 
-_cdflib!(@wrap t_cdf_p(t, df) -> p wraps cdft(p, t, df));
-_cdflib!(@wrap t_cdf_t(p, df) -> t wraps cdft(p, t, df));
-_cdflib!(@wrap t_cdf_df(p, t) -> df wraps cdft(p, t, df));
+_cdflib!(@wrap t_cdf(t, df) -> p wraps cdft(p, t, df));
+_cdflib!(@wrap t_icdf_t(p, df) -> t wraps cdft(p, t, df));
+_cdflib!(@wrap t_icdf_df(p, t) -> df wraps cdft(p, t, df));
