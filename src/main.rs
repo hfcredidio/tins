@@ -1,3 +1,7 @@
 mod cdflib;
 
-fn main() {}
+use cdflib::*;
+
+
+fn main() {
+}
