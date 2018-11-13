@@ -166,7 +166,7 @@ macro_rules! _cdflib {
         let mut status = 0;
         let mut bound = 0.0f64;
         unsafe { cdfbet(&mut which, &mut p, &mut q, $(&mut $arg),*, &mut pr, &mut ompr, &mut status, &mut bound); }
-        let result = _cdflib!(@get_result_var $which, $p, $($arg),*, $pr);
+        let result = _cdflib!(@get_result_var $which, p, $($arg),*, pr);
         get_result("cdfbin", status, result, bound, true)
     }};
 
@@ -180,7 +180,7 @@ macro_rules! _cdflib {
         let mut status = 0;
         let mut bound = 0.0f64;
         unsafe { cdfnbn(&mut which, &mut p, &mut q, $(&mut $arg),*, &mut pr, &mut ompr, &mut status, &mut bound); }
-        let result = _cdflib!(@get_result_var $which, $p, $($arg),*, $pr);
+        let result = _cdflib!(@get_result_var $which, p, $($arg),*, pr);
         get_result("cdfnbn", status, result, bound, true)
     }};
 
@@ -192,7 +192,7 @@ macro_rules! _cdflib {
         let mut status = 0;
         let mut bound = 0.0f64;
         unsafe { $func(&mut which, &mut p, &mut q, $(&mut $arg),*, &mut status, &mut bound); }
-        let result = _cdflib!(@get_result_var $which, $p, $($arg),*);
+        let result = _cdflib!(@get_result_var $which, p, $($arg),*);
         get_result(stringify!($func), status, result, bound, true)
     }};
 
