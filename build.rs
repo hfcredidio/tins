@@ -25,5 +25,4 @@ fn main() {
     println!("cargo:rustc-link-search=native={}", out_dir);
     println!("cargo:rustc-link-search=native={}", ld_library_path);
     println!("cargo:rustc-link-lib=static=cdflib");
-    println!("cargo:rustc-link-lib=dylib=gfortran");
 }
