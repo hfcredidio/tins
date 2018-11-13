@@ -7,4 +7,4 @@ $(OUT_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) $< -o $@
 
 default: $(OBJ)
-	ar crus $(OUT_DIR)/libcdflib.a $(OUT_DIR)/*.o
+	ar crus $(OUT_DIR)/libcdflib.a $^

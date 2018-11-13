@@ -21,6 +21,11 @@ fn main() {
         .arg(format!("OUT_DIR={}", out_dir))
         .current_dir(&Path::new("./src/cdflib")));
 
+    run(Command::new("make")
+        .arg(format!("OUT_DIR={}", out_dir))
+        .current_dir(&Path::new("./src/cephes")));
+
     println!("cargo:rustc-link-search=native={}", out_dir);
     println!("cargo:rustc-link-lib=static=cdflib");
+    println!("cargo:rustc-link-lib=static=md");
 }
