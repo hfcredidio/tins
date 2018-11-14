@@ -29,9 +29,14 @@ fn main() {
         .arg(format!("OUT_DIR={}", out_dir))
         .current_dir(&Path::new("./src/amos")));
 
+    run(Command::new("make")
+        .arg(format!("OUT_DIR={}", out_dir))
+        .current_dir(&Path::new("./src/specfun")));
+
     println!("cargo:rustc-link-search=native={}", out_dir);
     println!("cargo:rustc-link-lib=static=cdflib");
     println!("cargo:rustc-link-lib=static=md");
     println!("cargo:rustc-link-lib=static=amos");
+    println!("cargo:rustc-link-lib=static=specfun");
     println!("cargo:rustc-link-lib=dylib=gfortran");
 }

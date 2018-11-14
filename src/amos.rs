@@ -1,5 +1,4 @@
 use complex::Complex;
-use std::collections::HashMap;
 
 extern "C" {
     fn zairy_(
@@ -12,6 +11,7 @@ extern "C" {
         nz: &mut i32,
         ierr: &mut i32,
     );
+
     fn zbiry_(
         zr: &mut f64,
         zi: &mut f64,
@@ -19,43 +19,34 @@ extern "C" {
         kode: &mut i32,
         air: &mut f64,
         aii: &mut f64,
-        nz: &mut i32,
         ierr: &mut i32,
     );
 }
 
-macro_rules! error_messages {
-    ($func:ident, 5) => {
-        "No computation, algorithm termination condition not met"
-    };
-    ($func:ident, 4) => {
-        "No computation complete loss of accuracy by argument reduction"
-    };
-    ($func:ident, 3) => {{
-        "Computation completed losses of signifcance by argument reduction produce less than half of machine accuracy"
-    }};
-    ($func:ident, 2) => { "Overflow" };
-    ($func:ident, 1) => { "Input Error" };
-    ($func:ident, $ierr:expr) => { "Unknown Error" };
-}
-
-macro_rules! get_result {
-    ($func:ident, $ierr:expr, $result:expr) => {
-        match $ierr {
-            0 => Ok($result),
-            1 => Err(error_messages!($func, 1)),
-            2 => Err(error_messages!($func, 2)),
-            3 => Err(error_messages!($func, 3)),
-            4 => Err(error_messages!($func, 4)),
-            5 => Err(error_messages!($func, 5)),
-            _ => Err(error_messages!($func, 6)),
-        }
-    };
+fn get_result<T: Complex>(name: &str, ierr: i32, result: T) -> Result<T, String> {
+    match ierr {
+        0 => Ok(result),
+        -1 => Err(format!("amos.{}: Underflow encountered", name)),
+        1 => Err(format!("amos.{}: Input error", name)),
+        2 => Err(format!("amos.{}: Overflow encountered", name)),
+        3 => Err(format!("amos.{}: Computation completed losses of signifcance by argument reduction produce less than half of machine accuracy", name)),
+        4 => Err(format!("amos.{}: No computation complete loss of accuracy by argument reduction", name)),
+        5 => Err(format!("amos.{}: No computation, algorithm termination condition not met", name)),
+        _ => Err(format!("amos.{}: Unknown error", name)),
+    }
 }
 
 macro_rules! _amos {
+    (@call zairy_, $ierr:ident, $($arg:ident),*) => {
+        let mut nz = 0;
+        unsafe { zairy_($(&mut $arg),*, &mut nz, &mut $ierr); }
+        $ierr = if nz == 1 { -nz } else { $ierr };
+    };
+    (@call $func:ident, $ierr:ident, $($arg:ident),*) => {
+        unsafe { $func($(&mut $arg),*, &mut $ierr); }
+    };
     (@wrap $wrap:ident, $func:ident, $id:expr, $kode:expr) => {
-        pub fn $wrap<T: Complex>(z: T) -> T {
+        pub fn $wrap<T: Complex + Copy>(z: T) -> T {
             let mut zr = z.real();
             let mut zi = z.imag();
             let mut id = $id;
@@ -64,30 +55,22 @@ macro_rules! _amos {
             let mut air = 0.0;
             let mut aii = 0.0;
             let mut ierr = 0;
-            let mut nz = 0;
-            unsafe {
-                $func(
-                    &mut zr, &mut zi, &mut id, &mut kode, &mut air, &mut aii, &mut nz, &mut ierr,
-                );
-            }
+            _amos!(@call $func, ierr, zr, zi, id, kode, air, aii);
             let res = T::from_tuple((air, aii));
-            match get_result!($func, ierr, res) {
-                Err(msg) => {
-                    eprintln!("{}", msg);
-                    T::from_tuple((0.0, 0.0))
-                }
+            match get_result(stringify!($func), ierr, res) {
+                Err(msg) => { eprintln!("{}", msg); res }
                 Ok(res) => res,
             }
         }
     };
 }
 
-_amos!(@wrap airy, zairy_, 0, 1);
-_amos!(@wrap biry, zbiry_, 0, 1);
-_amos!(@wrap airye, zairy_, 0, 2);
-_amos!(@wrap birye, zbiry_, 0, 2);
+_amos!(@wrap airy_a, zairy_, 0, 1);
+_amos!(@wrap airy_b, zbiry_, 0, 1);
+_amos!(@wrap es_airy_a, zairy_, 0, 2);
+_amos!(@wrap es_airy_b, zbiry_, 0, 2);
 
-_amos!(@wrap dairy, zairy_, 1, 1);
-_amos!(@wrap dbiry, zbiry_, 1, 1);
-_amos!(@wrap dairye, zairy_, 1, 2);
-_amos!(@wrap dbirye, zbiry_, 1, 2);
+_amos!(@wrap der_airy_a, zairy_, 1, 1);
+_amos!(@wrap der_airy_b, zbiry_, 1, 1);
+_amos!(@wrap der_es_airy_a, zairy_, 1, 2);
+_amos!(@wrap der_es_airy_b, zbiry_, 1, 2);

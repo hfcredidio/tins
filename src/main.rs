@@ -2,14 +2,18 @@ mod amos;
 mod cdflib;
 mod cephes;
 mod complex;
+mod specfun;
 
-use amos::{airy, biry, dairy, dbiry};
+use amos::*;
 use cdflib::*;
-use cephes::i0;
+use cephes::*;
+use specfun::*;
 
 fn main() {
-    println!("{}", airy(1 as f64));
-    println!("{}", dairy(1 as f64));
-    println!("{}", biry(1 as f64));
-    println!("{}", dbiry(1 as f64));
+    println!("{}", airy_a(1 as f64));
+    println!("{}", der_airy_a(1 as f64));
+    println!("{}", airy_b(1 as f64));
+    println!("{}", der_airy_b(1 as f64));
+    println!("{:?}", airy_a_zeros(3));
+    println!("{:?}", airy_b_zeros(3));
 }
