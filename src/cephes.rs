@@ -4,8 +4,6 @@ mod _cephes {
     }
 }
 
-
 pub fn i0(x: f64) -> f64 {
     unsafe { _cephes::i0(x) }
 }
-

@@ -1,12 +1,15 @@
+mod amos;
 mod cdflib;
 mod cephes;
+mod complex;
 
+use amos::{airy, biry, dairy, dbiry};
 use cdflib::*;
-use cephes::{i0};
-
+use cephes::i0;
 
 fn main() {
-    for i in 1..10 {
-        println!("{}", i0(i as f64));
-    }
+    println!("{}", airy(1 as f64));
+    println!("{}", dairy(1 as f64));
+    println!("{}", biry(1 as f64));
+    println!("{}", dbiry(1 as f64));
 }

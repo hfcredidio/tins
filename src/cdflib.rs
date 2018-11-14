@@ -124,14 +124,28 @@ extern "C" {
     );
 }
 
-
-fn get_result(name: &str, status: i32, result: f64, bound: f64, return_bound: bool) -> Result<f64, String> {
+fn get_result(
+    name: &str,
+    status: i32,
+    result: f64,
+    bound: f64,
+    return_bound: bool,
+) -> Result<f64, String> {
     match status {
-        _ if status < 0 => Err(format!("cdflib.{}: Argument {} is out of bounds", name, -result)),
+        _ if status < 0 => Err(format!(
+            "cdflib.{}: Argument {} is out of bounds",
+            name, -result
+        )),
         0 => Ok(result),
-        1 | 2  if return_bound => Ok(bound),
-        1 => Err(format!("cdflib.{}: the answer appears to be lower than lowest search bound", name)),
-        2 => Err(format!("cdflib.{}: the answer appears to be higher than greatest search bound", name)),
+        1 | 2 if return_bound => Ok(bound),
+        1 => Err(format!(
+            "cdflib.{}: the answer appears to be lower than lowest search bound",
+            name
+        )),
+        2 => Err(format!(
+            "cdflib.{}: the answer appears to be higher than greatest search bound",
+            name
+        )),
         10 => Err(format!("cdflib.{}: Computation error.", name)),
         _ => Err(format!("cdflib.{}: Unknown error.", name)),
     }

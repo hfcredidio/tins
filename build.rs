@@ -33,4 +33,5 @@ fn main() {
     println!("cargo:rustc-link-lib=static=cdflib");
     println!("cargo:rustc-link-lib=static=md");
     println!("cargo:rustc-link-lib=static=amos");
+    println!("cargo:rustc-link-lib=dylib=gfortran");
 }
