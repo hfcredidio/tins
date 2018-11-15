@@ -16,5 +16,5 @@ fn main() {
     println!("{}", der_airy_b(1 as f64));
     println!("{:?}", airy_a_zeros(3));
     println!("{:?}", airy_b_zeros(3));
-    println!("{:?}", itairy(3.0));
+    println!("{:?}", it_airy(3.0));
 }

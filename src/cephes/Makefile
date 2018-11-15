@@ -23,8 +23,8 @@ default: $(OUT_DIR)/libmd.a
 
 $(OUT_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
-	objcopy --redefine-sym beta=_ceph_beta $@
-	objcopy --redefine-sym psi=_ceph_psi $@
+	$(OUT_DIR)/objconv -nr:beta:_ceph_beta $@ $@_
+	$(OUT_DIR)/objconv -nr:psi:_ceph_psi $@_ $@
 
 $(OUT_DIR)/libmd.a: $(OBJ) $(INCS)
 	$(AR) rv $(OUT_DIR)/libmd.a $(OBJ)

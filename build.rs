@@ -19,6 +19,10 @@ fn main() {
 
     run(Command::new("make")
         .arg(format!("OUT_DIR={}", out_dir))
+        .current_dir(&Path::new("./objconv")));
+
+    run(Command::new("make")
+        .arg(format!("OUT_DIR={}", out_dir))
         .current_dir(&Path::new("./src/cdflib")));
 
     run(Command::new("make")
