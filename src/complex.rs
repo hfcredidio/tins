@@ -1,7 +1,7 @@
 pub struct c64(f64, f64);
 
 pub trait Complex {
-    fn from_tuple((f64, f64)) -> Self;
+    fn from_tuple(_: (f64, f64)) -> Self;
     fn real(&self) -> f64;
     fn imag(&self) -> f64;
 }

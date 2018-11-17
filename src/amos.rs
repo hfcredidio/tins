@@ -1,4 +1,4 @@
-use complex::Complex;
+use crate::complex::Complex;
 
 extern "C" {
     fn zairy_(

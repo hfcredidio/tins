@@ -4,10 +4,10 @@ mod cephes;
 mod complex;
 mod specfun;
 
-use amos::*;
-use cdflib::*;
-use cephes::*;
-use specfun::*;
+use crate::amos::*;
+use crate::cdflib::*;
+use crate::cephes::*;
+use crate::specfun::*;
 
 fn main() {
     println!("{}", airy_a(1 as f64));

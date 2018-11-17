@@ -1,5 +1,3 @@
-extern crate std;
-
 extern "C" {
     fn cdfbet(
         which: &mut i32,
