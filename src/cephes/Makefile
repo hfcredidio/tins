@@ -23,7 +23,17 @@ default: $(OUT_DIR)/libmd.a
 
 $(OUT_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
-	$(OUT_DIR)/objconv -nr:beta:_ceph_beta $@ $@_
+
+$(OUT_DIR)/beta.o: beta.c
+	$(CC) $(CFLAGS) -c $< -o $@_
+	$(OUT_DIR)/objconv -nr:beta:_ceph_beta $@_ $@
+
+$(OUT_DIR)/psi.o: psi.c
+	$(CC) $(CFLAGS) -c $< -o $@_
+	$(OUT_DIR)/objconv -nr:psi:_ceph_psi $@_ $@
+
+$(OUT_DIR)/hyp2f1.o: hyp2f1.c
+	$(CC) $(CFLAGS) -c $< -o $@_
 	$(OUT_DIR)/objconv -nr:psi:_ceph_psi $@_ $@
 
 $(OUT_DIR)/libmd.a: $(OBJ) $(INCS)
