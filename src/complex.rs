@@ -1,4 +1,5 @@
-pub struct c64(f64, f64);
+#[derive(Debug, Copy, Clone)]
+pub struct c64(pub f64, pub f64);
 
 pub trait Complex {
     fn from_tuple(_: (f64, f64)) -> Self;
