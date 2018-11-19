@@ -1,6 +1,6 @@
 FILES=$(shell ls *.cpp)
-objconv: $(FILES)
-	g++ -O2 -o $(OUT_DIR)/$@ $^
+$(OUT_DIR)/objconv: $(FILES)
+	g++ -O2 -o $@ $^
 
 clean:
 	rm $(OUT_DIR)/objconv
