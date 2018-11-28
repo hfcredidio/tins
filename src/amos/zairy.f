@@ -124,14 +124,14 @@ C               A PORTABLE PACKAGE FOR BESSEL FUNCTIONS OF A COMPLEX
 C                 ARGUMENT AND NONNEGATIVE ORDER BY D. E. AMOS, TRANS.
 C                 MATH. SOFTWARE, 1986
 C
-C***ROUTINES CALLED  ZACAI,ZBKNU,ZEXP,ZSQRT,I1MACH,D1MACH
+C***ROUTINES CALLED  ZACAI,ZBKNU,AZEXP,AZSQRT,I1MACH,D1MACH
 C***END PROLOGUE  ZAIRY
 C     COMPLEX AI,CONE,CSQ,CY,S1,S2,TRM1,TRM2,Z,ZTA,Z3
       DOUBLE PRECISION AA, AD, AII, AIR, AK, ALIM, ATRM, AZ, AZ3, BK,
      * CC, CK, COEF, CONEI, CONER, CSQI, CSQR, CYI, CYR, C1, C2, DIG,
      * DK, D1, D2, ELIM, FID, FNU, PTR, RL, R1M5, SFAC, STI, STR,
      * S1I, S1R, S2I, S2R, TOL, TRM1I, TRM1R, TRM2I, TRM2R, TTH, ZEROI,
-     * ZEROR, ZI, ZR, ZTAI, ZTAR, Z3I, Z3R, D1MACH, ZABS, ALAZ, BB
+     * ZEROR, ZI, ZR, ZTAI, ZTAR, Z3I, Z3R, D1MACH, AZABS, ALAZ, BB
       INTEGER ID, IERR, IFLAG, K, KODE, K1, K2, MR, NN, NZ, I1MACH
       DIMENSION CYR(1), CYI(1)
       DATA TTH, C1, C2, COEF /6.66666666666666667D-01,
@@ -144,7 +144,7 @@ C***FIRST EXECUTABLE STATEMENT  ZAIRY
       IF (ID.LT.0 .OR. ID.GT.1) IERR=1
       IF (KODE.LT.1 .OR. KODE.GT.2) IERR=1
       IF (IERR.NE.0) RETURN
-      AZ = ZABS(ZR,ZI)
+      AZ = AZABS(ZR,ZI)
       TOL = DMAX1(D1MACH(4),1.0D-18)
       FID = DBLE(FLOAT(ID))
       IF (AZ.GT.1.0D0) GO TO 70
@@ -201,10 +201,10 @@ C-----------------------------------------------------------------------
       AIR = S1R*C1 - C2*(ZR*S2R-ZI*S2I)
       AII = S1I*C1 - C2*(ZR*S2I+ZI*S2R)
       IF (KODE.EQ.1) RETURN
-      CALL ZSQRT(ZR, ZI, STR, STI)
+      CALL AZSQRT(ZR, ZI, STR, STI)
       ZTAR = TTH*(ZR*STR-ZI*STI)
       ZTAI = TTH*(ZR*STI+ZI*STR)
-      CALL ZEXP(ZTAR, ZTAI, STR, STI)
+      CALL AZEXP(ZTAR, ZTAI, STR, STI)
       PTR = AIR*STR - AII*STI
       AII = AIR*STI + AII*STR
       AIR = PTR
@@ -220,10 +220,10 @@ C-----------------------------------------------------------------------
       AII = AII + CC*(STR*ZI+STI*ZR)
    60 CONTINUE
       IF (KODE.EQ.1) RETURN
-      CALL ZSQRT(ZR, ZI, STR, STI)
+      CALL AZSQRT(ZR, ZI, STR, STI)
       ZTAR = TTH*(ZR*STR-ZI*STI)
       ZTAI = TTH*(ZR*STI+ZI*STR)
-      CALL ZEXP(ZTAR, ZTAI, STR, STI)
+      CALL AZEXP(ZTAR, ZTAI, STR, STI)
       PTR = STR*AIR - STI*AII
       AII = STR*AII + STI*AIR
       AIR = PTR
@@ -265,7 +265,7 @@ C-----------------------------------------------------------------------
       IF (AZ.GT.AA) GO TO 260
       AA=DSQRT(AA)
       IF (AZ.GT.AA) IERR=3
-      CALL ZSQRT(ZR, ZI, CSQR, CSQI)
+      CALL AZSQRT(ZR, ZI, CSQR, CSQI)
       ZTAR = TTH*(ZR*CSQR-ZI*CSQI)
       ZTAI = TTH*(ZR*CSQI+ZI*CSQR)
 C-----------------------------------------------------------------------

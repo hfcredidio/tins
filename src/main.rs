@@ -1,8 +1,6 @@
 mod amos;
-mod cdflib;
 mod cephes;
 mod complex;
-mod specfun;
 
 use std::io::Read;
 use std::mem::transmute;
@@ -18,12 +16,15 @@ macro_rules! read {
 fn read_file(file: &mut std::fs::File) {
     let x: [f64; 100] = read!(8 * 100, file);
     let y: [f64; 100] = read!(8 * 100, file);
-    for i in 0.. 100 {
-        println!("{:?}, {:?}", x[i], y[i]);
+    for i in 0..100 {
+        println!("{:?}, {:?}, {:?}", x[i], y[i], crate::cephes::airy(x[i]).0);
+        println!("{:?}, {:?}, {:?}", x[i], y[i], crate::amos::airy_a(x[i]));
     }
 }
 
 fn main() {
-    let mut file = std::fs::File::open("/home/heitor/rust/tins/src/test_data/airy_a.dat").unwrap();
-    read_file(&mut file);
+    //let mut file = std::fs::File::open("/home/heitor/rust/tins/src/test_data/airy_a.dat").unwrap();
+    //read_file(&mut file);
+    let z = crate::complex::c64(1.1, 1.0);
+    println!("{:?}", crate::amos::airy_a(z));
 }
