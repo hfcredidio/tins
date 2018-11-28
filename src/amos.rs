@@ -26,7 +26,8 @@ pub fn airy_a<T: Complex>(z: T) -> T {
     let mut aii = 0.0f64;
     let mut nz = 0;
     let mut ierr = 0;
-    unsafe { fortran_call!(zairy_(zr, zi, id, kode, air, aii, nz, ierr)); }
-    println!("{}", ierr);
+    unsafe {
+        fortran_call!(zairy_(zr, zi, id, kode, air, aii, nz, ierr));
+    }
     T::from_tuple((air, aii))
 }

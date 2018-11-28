@@ -4,3 +4,5 @@ version = "0.1.0"
 authors = ["heitor"]
 
 [dependencies]
+assert_approx_eq = "1.0.0"
+npy = "0.4"
